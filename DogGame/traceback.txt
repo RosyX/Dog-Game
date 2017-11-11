@@ -1,0 +1,25 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 87, in script
+    $ dog_name = player_name.strip()
+  File "game/script.rpy", line 87, in <module>
+    $ dog_name = player_name.strip()
+NameError: name 'player_name' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 87, in script
+    $ dog_name = player_name.strip()
+  File "/Users/sarah/Desktop/renpy-6.99.12.4-sdk/renpy/ast.py", line 814, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "/Users/sarah/Desktop/renpy-6.99.12.4-sdk/renpy/python.py", line 1719, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 87, in <module>
+    $ dog_name = player_name.strip()
+NameError: name 'player_name' is not defined
+
+Darwin-15.6.0-x86_64-i386-64bit
+Ren'Py 6.99.12.4.2187
+DogGame 1.0
