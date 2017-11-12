@@ -154,8 +154,8 @@ label rdpark:
     "%(dog_name)s pant excitedly at them."
     show rd happy:
         xalign 0.0
-        linear 0.3 xpos 0.7
-    show skater at right
+        linear 0.3 xpos 0.6
+    show skater at right behind rd
     s "Hey dude!"
     s "That's a rad dog you've got there!"
     y "I know and I love them." 
