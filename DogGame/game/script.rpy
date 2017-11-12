@@ -1,7 +1,4 @@
-# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+#color characters
 image rd neutral = "rd_neutral.png"
 image rd happy = "rd_happy.png"
 image rd xgames = "rd_xgames.png"
@@ -15,38 +12,44 @@ image shelterlady = "shelterlady.png"
 image skater xgames = "skater_xgames.png"
 image skater = "skater.png"
 image vogue = "vogue.png"
+
+image bg cat = im.Scale("cat.jpg", 1280, 720)
+image bg xgames = im.Scale("xgames.jpg", 1280, 720)
+image bg shelter = "shelter.jpg"
+image bg park = "park.jpg"
 image bg table = "table.jpg"
 image bg room = "room.jpg"
-image bg rd_radflip = "radflip.png"
+image bg rd_radflip = im.Scale("radflip.png", 1280, 720)
+image bg bird ="bird.jpg"
 
 define y = Character("You")
 define sl = Character("Shelter Lady")
 define s = Character("Skater")
 define e = Character("Everyone")
 define a = Character("Announcer")
-# The game starts here.
 
 label start:
+    scene orange with fade
     $ player_name = renpy.input("What is your name?")
     $ player_name = player_name.strip()
     if player_name == "":
         $ player_name="You"
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-    #play music "chipper.ogg"
+    play music "chipper.mp3"
     
     scene bg room 
     with fade
 
     "Today is the day."
     "Today is the day your dog is coming home!"
-    "You remember going to the shelter a few weeks ago to take a look."
+    "You remember going to the shelter a few weeks ago..."
 
     scene bg shelter
     with fade
 
-    "Oh man, all these dogs are the bee's knees."
+    y "I'm so excited to see all these dogs!"
+    show shelterlady 
+    sl "Let's go then!"
+    hide shelterlady
 
     show rd neutral 
     "This one is some kind of border collie mix. His tongue is lolling out of his mouth happily."
@@ -103,7 +106,7 @@ label start:
             jump cat
 
 label rdog:
-    #play music "rad.ogg"
+    play music "Pookatori and Friends.mp3"
     "The rad dog!"
     $ dog_name = renpy.input("What is the dog's name?")
     $ dog_name = dog_name.strip()
@@ -118,7 +121,7 @@ label rdog:
     y "Do you want to use it?"
     "You lay the skateboard on the ground and %(dog_name)s steps onto it."
     y "Jesus. How can he get any cooler?"
-    #play sound effect "bark"
+    play sound "rdbark.mp3"
     "Are you going to pet him?"
     menu:
         "Yes":
@@ -145,10 +148,14 @@ label rdog:
 
 label rdpark: 
     scene bg park
-    show rd_happy
+    play music "chipper.mp3"
+    show rd happy
     "The park is lively with all of the skateboarders and dogs. There's a group of skaters to the right."
     "%(dog_name)s pant excitedly at them."
-    show skater
+    show rd happy:
+        xalign 0.0
+        linear 0.3 xpos 0.7
+    show skater at right
     s "Hey dude!"
     s "That's a rad dog you've got there!"
     y "I know and I love them." 
@@ -156,15 +163,17 @@ label rdpark:
     y "Me too! I'm %(player_name)s. Hey can you help me try teaching him to skate?"
     s "Yeah! Of course! Let's try to get him the board."
     hide skater
+    hide rd happy
     jump xgames
 
 label xgames:
     scene black 
     with fade
     centered "{b}a few years later..."
-    scene bg stadium 
+    scene bg xgames
+    play music "Pookatori and Friends.mp3"
     "The audience cheers."
-    #play audience cheering
+    play sound "cheer.mp3"
     a "WELCOME TO THE 69TH X-GAMES!!!!"
     a "THIS IS THE ONE AND ONLY, THE BEST, THE BADDEST, THE RADDEST"
     a "YOUR FAVORITE DOG"
@@ -178,15 +187,14 @@ label xgames:
     centered "{b}RAD Ending"
     return 
 
-label pdog:
-    return
-
 label fdog: 
     y "The beautiful dog!"
+    play music "Ranz des Vaches.mp3"
     $ dog_name = renpy.input("What is the dog's name?")
     $ dog_name = dog_name.strip()
     if dog_name == "":
         $ dog_name="Fashion Dog"
+    show fd neutral
     "You go to pat them, but are intimidated by their gaze."
     y "...so...elegant!"
     "They sniffed at you and nosed your hand"
@@ -200,7 +208,7 @@ label fdog:
             "You pet them."
         "Yes":
             "You pet them."
-    #dog "*bark*"
+    play sound "fdbark.mp3"
     y "It's time for your regular walk!"
     "Where to?"
     menu:
@@ -209,19 +217,124 @@ label fdog:
 
 label fdpark:
     scene bg park
-    #insert rd_happy
-    #play bark
+    play music "Ranz des Vaches.mp3"
+    show fd neutral
+    play sound "fdbark.mp3"
     "The park is lively with all of the skateboarders and dogs. There's a group of skaters to the right."
-    "%(dog_name)s pant excitedly at them."
-    show skater
-    s "Hey dude!"
-    s "That's a rad dog you've got there!"
+    "%(dog_name)s is runnning around wildly. Her majestic, horse-like gait attracts the eyes of surronding park-goers."
+    show skater at right
+    s "You have a beautiful dog!"
     y "I know and I love them." 
-    s "My name's Cal by the way. I really love dogs."
-    y "Me too! I'm %(player_name)s. Hey can you help me try teaching him to skate?"
-    s "Yeah! Of course! Let's try to get him the board."
     hide skater
-    jump xgames
+    "She looks so at peace running in the open."
+    "Maybe she really should be a model..."
+    jump magazine
+
+label magazine:
+    scene black with fade
+    centered "{b}a few years later..."
+    scene bg table with fade
+    show vogue
+    play music "Ranz des Vaches.mp3"
+    "Your precious %(dog_name)s has become the icon of the modeling world. With their dashing looks and free spirit, they've captured the hearts of everyone. Including yours."
+    scene black with fade
+    centered "{b}Fashion Dog Ending"
+    return
+
+label pdog:
+    y "The sad dog!"
+    play music "saddogtheme.mp3"
+    $ dog_name = renpy.input("What is the dog's name?")
+    $ dog_name = dog_name.strip()
+    if dog_name == "":
+        $ dog_name="Good Dog"
+    "You hear aggressive borking from the living room."
+    y "??"
+    show pd down
+    y "Hm?"
+    y "What-the!"
+    y "%(dog_name)s!"
+
+    show bg bird
+    hide pd down
+    "You try to walk closer, but %(dog_name)s shivers and backs further"
+    y "hmm...."
+
+    scene bg shelter
+    with fade
+    play music "saddogtheme.mp3"
+    show shelterlady
+
+    y "Hey... my dog is acting pretty abnormally..."
+    sl "Did %(dog_name)s pee on the coach again?"
+    y "No...."
+    sl "Did %(dog_name)s chew up pillows again?"
+    y "Yes, bu.."
+    sl "Oh, don't worry about it, that's just puppies teething!"
+    y "Uh... but he also borked a bird down!"
+    sl "Oh... that... %(dog_name)s was a stray"
+    sl "of his 13 siblings, he was the only one that survived..."
+    sl "Strays can often act aggressive or fearful"
+    sl "You can divert his attention by giving him chew toys or walking him in the park!"
+    y "...."
+    sl "If %(dog_name)s is still aggressive, you can bring %(dog_name)s back to me."
+    y "ok...."
+
+    scene bg room
+    with fade
+    play music "saddogtheme.mp3"
+    show pd down
+    "You're back with your angsty pupper, what do you do?"
+    menu:
+        "Nothing":
+            y ".....okay."
+
+        "Take a walk in the park!":
+            y "Yay!"
+
+
+    scene bg park
+    with fade
+    play music "saddogtheme.mp3"
+    "As you take a walk in the combination dog and skate park with %(dog_name)s, looking at his little butt plodding on the grass."
+    "You realize that the our conversations with other messengers have led to a redefining of pseudo-mystical consciousness. Reality has always been bursting with seekers whose third eyes are nurtured by beauty. We are in the midst of a pranic awakening of conscious living that will align us with the quantum matrix itself."
+    "In other words, you don't want to bear farewell with %(dog_name)s, this is a relationship worth fostering."
+
+    scene bg room
+    with fade
+    play music "saddogtheme.mp3"
+    show pd down
+    y "I am glad to be by your side, my pawsome furry friend. I am sorry life hasn't treated you better,"
+    y "but I believe life will be better with the two of us working together."
+    play sound "pdbark.mp3"
+    y "You deserve love and I will do whatever it takes to make you feel at home again. You'll belong like a"
+    y "warm chocolate chip cookie to a glass of milk."
+
+    scene black with fade
+    scene bg room
+    with fade
+    play music "chipper.mp3"
+    y "*yawnnnnn* hello world"
+    y "???"
+    "you see a tiny bump in the bed"
+    "you FLIP the blanket and.."
+    show pd happy
+
+    y "%(dog_name)s!"
+
+    menu:
+        "kiss your doggo":
+            play sound "kiss.mp3"
+            y "*smooches* %(dog_name)s like a suburban mom with Chihuahua"
+
+        "hug":
+            y "*hugs* %(dog_name)s like a babushka hugs her grandson."
+
+    "%(dog_name)s attacks with the most irresistable snuggle in the world!"
+    y "I love life and I love you my doggo!"
+    scene black with fade
+    centered "{b}Good Dog Ending"
+    return
 
 
 
@@ -232,5 +345,4 @@ label cat:
     y "God, I love cats."
     scene black with fade
     centered "{b}Cat Ending"
-
     return
