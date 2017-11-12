@@ -22,14 +22,15 @@ image bg room = "room.jpg"
 image bg rd_radflip = im.Scale("radflip.png", 1280, 720)
 image bg bird ="bird.jpg"
 
-define y = Character("You")
-define sl = Character("Shelter Lady")
-define s = Character("Skater")
+define y = DynamicCharacter("player_name", who_color="00bfff")
+define sl = Character("Shelter Lady", who_color="ffbae8")
+define s = DynamicCharacter("skater_name", who_color="88ff00")
 define e = Character("Everyone")
-define a = Character("Announcer")
+define a = Character("Announcer", who_color="e04366")
 
 label start:
-    scene orange with fade
+    $ skater_name = "Skater"
+    scene bg orange with fade
     $ player_name = renpy.input("What is your name?")
     $ player_name = player_name.strip()
     if player_name == "":
@@ -74,7 +75,7 @@ label start:
     hide shelterlady
     
     show pd down
-    "The next dog is a little shyer. He has a lot of bulk on him and seems to turn away when you try to look at his eyes."
+    "The next dog seems to be shy. He has a lot of bulk on him and seems to turn away when you try to look at his eyes."
     "He lays down facing away from you and you can see a large gash across his right rear."
 
     sl "He came from a rough place. He's getting a lot better now. If you're interested in adopting him, keep in mind that you'll have to be very patient."
@@ -160,6 +161,7 @@ label rdpark:
     s "That's a rad dog you've got there!"
     y "I know and I love them." 
     s "My name's Cal by the way. I really love dogs."
+    $ skater_name = "Cal"
     y "Me too! I'm %(player_name)s. Hey can you help me try teaching him to skate?"
     s "Yeah! Of course! Let's try to get him the board."
     hide skater
@@ -249,16 +251,16 @@ label pdog:
     if dog_name == "":
         $ dog_name="Good Dog"
     "You hear aggressive borking from the living room."
-    y "??"
+    y "?"
     show pd down
     y "Hm?"
-    y "What-the!"
+    y "What the!"
     y "%(dog_name)s!"
 
     show bg bird
     hide pd down
-    "You try to walk closer, but %(dog_name)s shivers and backs further"
-    y "hmm...."
+    "You try to walk closer, but %(dog_name)s shivers and backs away further"
+    y "Hmm...."
 
     scene bg shelter
     with fade
@@ -266,19 +268,19 @@ label pdog:
     show shelterlady
 
     y "Hey... my dog is acting pretty abnormally..."
-    sl "Did %(dog_name)s pee on the coach again?"
+    sl "Did %(dog_name)s pee on the couch?"
     y "No...."
-    sl "Did %(dog_name)s chew up pillows again?"
+    sl "Did %(dog_name)s chew up the pillows?"
     y "Yes, bu.."
     sl "Oh, don't worry about it, that's just puppies teething!"
     y "Uh... but he also borked a bird down!"
-    sl "Oh... that... %(dog_name)s was a stray"
-    sl "of his 13 siblings, he was the only one that survived..."
-    sl "Strays can often act aggressive or fearful"
+    sl "Oh... that... %(dog_name)s was a stray."
+    sl "Of his 13 siblings, he was the only one that survived..."
+    sl "Strays can often act aggressive or fearful."
     sl "You can divert his attention by giving him chew toys or walking him in the park!"
     y "...."
-    sl "If %(dog_name)s is still aggressive, you can bring %(dog_name)s back to me."
-    y "ok...."
+    sl "If %(dog_name)s is still acting aggressive, you can bring %(dog_name)s back to me."
+    y "Ok...."
 
     scene bg room
     with fade
@@ -286,8 +288,9 @@ label pdog:
     show pd down
     "You're back with your angsty pupper, what do you do?"
     menu:
-        "Nothing":
-            y ".....okay."
+        "Give chew toy":
+            y "Here, take Mr.Hot Dog."
+            show pd happytoy
 
         "Take a walk in the park!":
             y "Yay!"
@@ -298,7 +301,7 @@ label pdog:
     play music "saddogtheme.mp3"
     "As you take a walk in the combination dog and skate park with %(dog_name)s, looking at his little butt plodding on the grass."
     "You realize that the our conversations with other messengers have led to a redefining of pseudo-mystical consciousness. Reality has always been bursting with seekers whose third eyes are nurtured by beauty. We are in the midst of a pranic awakening of conscious living that will align us with the quantum matrix itself."
-    "In other words, you don't want to bear farewell with %(dog_name)s, this is a relationship worth fostering."
+    "In other words, you don't want to bid farewell to %(dog_name)s, this is a relationship worth fostering."
 
     scene bg room
     with fade
@@ -314,21 +317,21 @@ label pdog:
     scene bg room
     with fade
     play music "chipper.mp3"
-    y "*yawnnnnn* hello world"
+    y "*yawnnnnn* hello world()"
     y "???"
-    "you see a tiny bump in the bed"
-    "you FLIP the blanket and.."
+    "You see a tiny bump in the bed..."
+    "You take off the blanket to discover ..."
     show pd happy
 
     y "%(dog_name)s!"
 
     menu:
-        "kiss your doggo":
+        "Kiss your doggo":
             play sound "kiss.mp3"
-            y "*smooches* %(dog_name)s like a suburban mom with Chihuahua"
+            "You smooch %(dog_name)s like a suburban mom with Chihuahua."
 
         "hug":
-            y "*hugs* %(dog_name)s like a babushka hugs her grandson."
+            "You hug %(dog_name)s like a babushka hugs her grandson."
 
     "%(dog_name)s attacks with the most irresistable snuggle in the world!"
     y "I love life and I love you my doggo!"

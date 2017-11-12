@@ -12,24 +12,24 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("DogGame")
+define config.name = _("Furry Friends: EmBark on a Journey")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
 
-define gui.show_name = True
+define gui.show_name = False
 
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "1.1"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
-define gui.about = _("")
+define gui.about = _("A WHack Fall 2017 game made by Sarah Chang, Rosalinda Xiong, and Jessica Zou.")
 
 
 ## A short name for the game used for executables and directories in the built
