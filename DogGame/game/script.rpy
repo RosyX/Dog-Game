@@ -5,6 +5,8 @@
 
 define y = Character("You")
 define sl = Character("Shelter Lady")
+define s = Character("Skater")
+define e = Character("Everyone")
 
 # The game starts here.
 
@@ -76,7 +78,7 @@ label start:
         "the sad dog!":
             return
         "the beautiful dog!":
-            return
+            jump bdog
         "a cat!":
             jump cat
 
@@ -87,6 +89,7 @@ label rdog:
     $ dog_name = dog_name.strip()
     if dog_name == "":
         $ dog_name="Rad Dog"
+    define dog = Character(dog_name)
     #show rd_neutral
     y "Oh my god. Hello, %(dog_name)s! You are so rad."
     "You begin to pat him."
@@ -119,13 +122,63 @@ label rdog:
             "Well the only park in town is a combination skate park, dog park, people park anyways."
             jump rdpark
         "Go to X-games":
-            jump Xgames
+            jump xgames
 
-label rdpark:
-    "wip"
+label rdpark: 
+    scene bg park
+    #insert rd_happy
+    "*bark*"
+    "RD sees the skateborders and pants excitedly"
+    s "Hey dude!"
+    s "That's a rad dog you've got there!"
+    y "I know and I love them. Hey can you help me try teaching him to skate?"
+    s "Yeah! Of course! Let's try to get him the board."
 
 label xgames:
-    "wip"
+    "/The audience is cheering/"
+    scene bg stadium 
+    "WELCOME TO THE 69TH X-GAMES!!!!"
+    "THIS IS THE ONE AND ONLY, THE BEST, THE BADDEST, THE RADDEST"
+    "YOUR FAVORITE DOG"
+    dog_name + "!!!!!"
+    # image rd_neutral
+    # image skater 
+    s "Haha! I can't believe we made it! This is rad!"
+    rd "*bark bark*"
+    #rd splash screen insert
+    e "Yee-Haw!!!"
+    scene black with fade
+    centered "{b}RD Ending"
+    #rad dog ending
+    return 
+
+label fdog: #THIS IS UNFINISHED AND UNTESTED 
+    "...so...elegant!"
+    "They sniffed at you and nosed your hand"
+    "Pet?"
+    menu:
+        "yes":
+            "you pet them"
+        "yes":
+            "you pet them"
+        "yes":
+            "you pet them"
+        "yes":
+            "you pet them"
+    $ dog_name = renpy.input("What is the dog's name?")
+    $ dog_name = dog_name.strip()
+    if dog_name == "":
+        $ dog_name="Fashion Dog"
+    define dog = Character(dog_name)
+    dog "*bark*"
+    # time forward
+    "Walk!"
+    "Where to?"
+    menu:
+        "The park"
+# WARNING... UNFINISHED AND UNTESTED!
+
+
 
 label cat:
     "I wanted a cat!"
