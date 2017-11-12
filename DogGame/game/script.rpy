@@ -22,9 +22,9 @@ image bg rd_radflip = im.Scale("radflip.png", 1280, 720)
 image bg bird ="bird.jpg"
 image bg orange = im.Scale("orange.jpg", 1280, 720)
 
-define y = DynamicCharacter("player_name", who_color="00bfff")
-define sl = Character("Shelter Lady", who_color="ffbae8")
-define s = DynamicCharacter("skater_name", who_color="88ff00")
+define y = DynamicCharacter("player_name", who_color="0042ad")
+define sl = Character("Shelter Lady", who_color="ff44ba")
+define s = DynamicCharacter("skater_name", who_color="007222")
 define e = Character("Everyone")
 define a = Character("Announcer", who_color="e04366")
 
