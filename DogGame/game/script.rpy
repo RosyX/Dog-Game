@@ -1,4 +1,3 @@
-#color characters
 image rd neutral = "rd_neutral.png"
 image rd happy = "rd_happy.png"
 image rd xgames = "rd_xgames.png"
@@ -21,6 +20,7 @@ image bg table = "table.jpg"
 image bg room = "room.jpg"
 image bg rd_radflip = im.Scale("radflip.png", 1280, 720)
 image bg bird ="bird.jpg"
+image bg orange = im.Scale("orange.jpg", 1280, 720)
 
 define y = DynamicCharacter("player_name", who_color="00bfff")
 define sl = Character("Shelter Lady", who_color="ffbae8")
@@ -236,9 +236,10 @@ label magazine:
     scene black with fade
     centered "{b}a few years later..."
     scene bg table with fade
-    show vogue
+    show vogue with dissolve
     play music "Ranz des Vaches.mp3"
-    "Your precious %(dog_name)s has become the icon of the modeling world. With their dashing looks and free spirit, they've captured the hearts of everyone. Including yours."
+    "Your precious %(dog_name)s has become the icon of the modeling world. With their dashing looks and free spirit, they've captured the hearts of everyone."
+    "Including yours."
     scene black with fade
     centered "{b}Fashion Dog Ending"
     return
@@ -300,7 +301,9 @@ label pdog:
     with fade
     play music "saddogtheme.mp3"
     "As you take a walk in the combination dog and skate park with %(dog_name)s, looking at his little butt plodding on the grass."
-    "You realize that the our conversations with other messengers have led to a redefining of pseudo-mystical consciousness. Reality has always been bursting with seekers whose third eyes are nurtured by beauty. We are in the midst of a pranic awakening of conscious living that will align us with the quantum matrix itself."
+    "You realize that the our conversations with other messengers have led to a redefining of pseudo-mystical consciousness."
+    "Reality has always been bursting with seekers whose third eyes are nurtured by beauty. We are in the midst "
+    "of a pranic awakening of conscious living that will align us with the quantum matrix itself."
     "In other words, you don't want to bid farewell to %(dog_name)s, this is a relationship worth fostering."
 
     scene bg room
